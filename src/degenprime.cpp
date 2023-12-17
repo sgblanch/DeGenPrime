@@ -120,48 +120,8 @@ int main(int argc, char *argv[])
 	}
 	else if(list.TestAlignment() == false)
 	{
-		cout << "File not aligned.  Running MAFFT, then re-running this program.\n";
-		bool local = true;
-		if(argc > 2)
-		{
-			for(int i = 1;i < argc;i++)
-			{
-				if(local == false)
-				{
-					break;
-				}
-				if(strstr(argv[i], "--g") != NULL || strstr(argv[i], "--global") != NULL)
-				{
-					local = false;
-				}
-			}
-		}
-		string clustal = filename.substr(0,found);
-		clustal += local ? "_l.clust" : "_g.clust";
-		string command1 = "mafft ";
-		command1 += local ? "--localpair " : "--globalpair ";
-		command1 += "--maxiterate 1000 --clustalout --quiet " + filename + " >" + clustal;
-		string command2 = "";
-		for(int i = 0;i < argc - 1;i++)
-		{
-			command2 += (string)argv[i] + " ";
-		}
-		command2 += clustal;
-		const char *c1 = command1.c_str();
-		const char *c2 = command2.c_str();
-
-		// Attempt to align the sequence
-		try
-		{
-			system(c1);
-		}
-		catch(int exception)
-		{
-			cout << "There was an error trying to run MAFFT on this file." << endl;
-			exit(FILE_MISALIGNED);
-		}
-		system(c2);
-		exit(PROGRAM_SUCCESS);
+		cout << "File not aligned.  Run MAFFT then re-run this program.\n";
+		exit(FILE_MISALIGNED);
 	}
 	else if(list.size() == 1)
 	{
