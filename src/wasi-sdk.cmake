@@ -1,0 +1,23 @@
+set(CMAKE_SYSTEM_NAME WASI)
+set(CMAKE_SYSTEM_VERSION 1)
+set(CMAKE_SYSTEM_PROCESSOR wasm32)
+set(triple wasm32-wasi)
+
+# alpine linux
+if(IS_DIRECTORY /usr/share/wasi-sysroot)
+    set(CMAKE_SYSROOT /usr/share/wasi-sysroot)
+endif()
+
+set(CMAKE_C_COMPILER clang)
+set(CMAKE_C_COMPILER_TARGET ${triple})
+
+set(CMAKE_CXX_COMPILER clang++)
+set(CMAKE_CXX_COMPILER_TARGET ${triple})
+set(CMAKE_CXX_FLAGS -fno-exceptions)
+
+set(CMAKE_AR llvm-ar)
+
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)

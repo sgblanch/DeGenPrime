@@ -17,3 +17,7 @@ install(TARGETS degenprime DESTINATION bin)
 set(CPACK_GENERATOR "TGZ")
 set(CPACK_SOURCE_GENERATOR "TGZ")
 include(CPack)
+
+if (${CMAKE_SYSTEM_NAME} STREQUAL WASI)
+    set(CMAKE_EXECUTABLE_SUFFIX ".wasm")
+endif()

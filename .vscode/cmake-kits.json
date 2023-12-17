@@ -1,0 +1,6 @@
+[
+    {
+        "name": "Clang wasm32-wasi",
+        "toolchainFile": "${workspaceFolder}/src/wasi-sdk.cmake"
+    }
+]
